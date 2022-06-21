@@ -6,21 +6,113 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <style>
+        pre {
+            color: #fff;
+            background-color: #000;
+            margin-top: 0;
+            margin-bottom: 1.5em;
+        }
+
+        article {
+            display: flex;
+            flex-wrap: wrap;
+            margin: 0.3em 0.5em;
+            padding: 0 1em;
+            border: #858585 1px solid;
+        }
+        h2 {
+            flex: 100% 0 0;
+        }
+        .link {
+            flex: 15%  0 0
+        }
+        .code-sample {
+            flex: 85% 0 0;
+        }
+    </style>
 </head>
 <body>
-<a href="https://www.google.com/">同タブで開く</a>
-<a href="https://www.google.com/" target="_blank">別タブで開く</a>
-<a href="https://www.google.com/" id="window-anchor">別ウインドウで開く</a>
-<button type="button" id="window-button">別ウインドウで開く</button>
+<header>
+    <h1>画面遷移パターン</h1>
+</header>
+<article>
+    <h2>同じタブで開く</h2>
+    <div class="link">
+        <a href="https://www.google.com/">同タブで開く</a>
+
+    </div>
+    <div class="code-sample">
+        <small>HTML</small>
+        <pre>
+
+        &lt;a href=&quot;https://www.google.com/&quot;&gt;同タブで開く&lt;/a&gt;
+    </pre>
+    </div>
+</article>
+<article>
+    <h2>別タブで開く</h2>
+    <div class="link">
+        <a href="https://www.google.com/" target="_blank" rel="noopener noreferrer">別タブで開く</a>
+    </div>
+
+    <div class="code-sample">
+        <small>HTML</small>
+        <pre>
+
+            &lt;a href=&quot;https://www.google.com/&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;別タブで開く&lt;/a&gt;
+        </pre>
+    </div>
+</article>
+<article>
+    <h2>別ウインドウで開く</h2>
+    <div class="link">
+        <a href="https://www.google.com/" id="window-anchor" rel="noopener noreferrer">別ウインドウで開く</a>
+    </div>
+    <div class="code-sample">
+        <small>HTML</small>
+        <pre>
+
+            &lt;a href=&quot;https://www.google.com/&quot; id=&quot;window-anchor&quot; rel=&quot;noopener noreferrer&quot;&gt;別ウインドウで開く&lt;/a&gt;
+        </pre>
+        <small>Javascript</small>
+        <pre>
+
+    document.querySelector('#window-anchor').addEventListener('click', (event) => {
+            event.preventDefault()
+            window.open('https://www.google.com/', 'google', 'noreferrer')
+    })
+        </pre>
+    </div>
+    <div class="link">
+        <button type="button" id="window-button">別ウインドウで開く</button>
+    </div>
+
+    <div class="code-sample">
+        <small>HTML</small>
+        <pre>
+
+            &lt;button type=&quot;button&quot; id=&quot;window-button&quot;&gt;別ウインドウで開く&lt;/button&gt;
+        </pre>
+        <small>Javascript</small>
+        <pre>
+
+    document.querySelector('#window-button').onclick = () => {
+        window.open('https://www.google.com/', , 'noreferrer')
+    }
+        </pre>
+    </div>
+</article>
+
 
 
 <script>
     document.querySelector('#window-button').onclick = () => {
-        window.open('https://www.google.com/')
+        window.open('https://www.google.com/', undefined, 'noreferrer')
     }
     document.querySelector('#window-anchor').addEventListener('click', (event) => {
         event.preventDefault()
-        window.open('https://www.google.com/', 'google', 'top=0,left=0,width=400,height=300')
+        window.open('https://www.google.com/', undefined, 'noreferrer')
     })
 </script>
 </body>
