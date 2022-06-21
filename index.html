@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<a href="https://www.google.com/">同タブで開く</a>
+<a href="https://www.google.com/" target="_blank">別タブで開く</a>
+<a href="https://www.google.com/" id="window-anchor">別ウインドウで開く</a>
+<button type="button" id="window-button">別ウインドウで開く</button>
+
+
+<script>
+    document.querySelector('#window-button').onclick = () => {
+        window.open('https://www.google.com/')
+    }
+    document.querySelector('#window-anchor').addEventListener('click', (event) => {
+        event.preventDefault()
+        window.open('https://www.google.com/', 'google', 'top=0,left=0,width=400,height=300')
+    })
+</script>
+</body>
+</html>
